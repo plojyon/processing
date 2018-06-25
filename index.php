@@ -60,7 +60,7 @@
 					#title {
 						border-bottom: 2px dashed black;
 						padding: 1em 0;
-						margin-bottom: 2em;
+						margin: 0 auto 2em auto;
 						width: 40%;
 					}
 					#title:after {
