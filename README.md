@@ -1,5 +1,5 @@
 # Processing
-[View project here](https://plojyon.github.io/processing/) (hosted via Github pages)
+[View project here](http://yon.ddns.net/OTHR/processing/) (hosted partially via Github pages, partially by me)
 
 ---
 

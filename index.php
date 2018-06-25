@@ -10,7 +10,8 @@
 		<!-- TODO: Content here -->
 		<p>Stuff comes here.</p>
 		<?php
-			echo "Testing PHP on github...";
+			echo "Testing PHP on github...\n";
+			echo "Username: ".$_GET['uname']."\n";
 		?>
 	</body>
 </html>
