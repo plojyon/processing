@@ -35,12 +35,12 @@
 			}
 			// sketch name validation - match string with only alphanumeric characters and underscores
 			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch'])) {
-				report("Invalid sketch name!", "Sketch names can only contain letters, digits or underscores.");
+				report("Invalid sketch name", "Sketch names can only contain letters, digits or underscores.");
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
 			}
 			// no such sketch found (404)
 			elseif (!file_exists('https://plojyon.github.io/processing/sketches/'.$_GET['sketch'].'.js')) {
-					report("Sketch does not exist!", "The selected sketch (".$_GET['sketch'].") was not found.");
+					report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
 			// all OK
 			else {
