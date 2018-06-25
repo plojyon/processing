@@ -1,3 +1,5 @@
+console.log("FLOWFIELD LOADED");
+
 function setup() {
   speed = 0.01;/**/
   scl = 5; /*smaller number means smaller squares (more diverse)*/
@@ -5,8 +7,8 @@ function setup() {
   maxSpeed = 5; /*bigger number means faster particles*/
   particleCount = 100; /* how many particles are there*/
   drawGuidelines = false;
-  
-  
+
+
   createCanvas(400,400);
   pic = createGraphics(400, 400);
   particles = new Array();
@@ -31,7 +33,7 @@ function draw() {
       }
     }
   }
-  
+
   for (p in particles) {
     particles[p].move();
     particles[p].show();
@@ -55,13 +57,13 @@ Particle.prototype.move = function() {
   acc.rotate(noise(floor(this.pos.x/scl)/noiseScale, floor(this.pos.y/scl)/noiseScale, time*speed)*TWO_PI);
   //var dev = createVector(random(0, 1), random(0, 1));
   //acc.add(dev);
-  
+
   acc.add(this.prevacc);
   this.prevacc = acc;
-  
+
   acc.setMag(maxSpeed);
   this.pos.add(acc);
-  
+
   if (this.pos.x <= 0) {
     this.pos.x = width;
     this.prevpos = this.pos.copy();
