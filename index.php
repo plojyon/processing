@@ -28,6 +28,9 @@
 	</head>
 	<body>
 		<?php
+			$site = "https://plojyon.github.io/processing/";
+			$sketches = $site."sketches/";
+
 			// a sketch was NOT selected in the parameter
 			if (!isset($_GET['sketch'])) {
 				// display the sketch selection page
@@ -39,13 +42,13 @@
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
 			}
 			// no such sketch found (404)
-			elseif (!file_exists('https://plojyon.github.io/processing/sketches/'.$_GET['sketch'].'.js')) {
+			elseif (!file_exists($sketches.$_GET['sketch'].'.js')) {
 					report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
 			// all OK
 			else {
 				// print the <script> include tag to load the sketch javascript
-				echo '<script src="https://plojyon.github.io/processing/sketches/'.$_GET['sketch'].'.js"></script>';
+				echo '<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
 			}
 
 
