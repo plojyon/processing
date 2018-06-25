@@ -25,15 +25,21 @@
 		</style>
 	</head>
 	<body>
-		<!-- TODO: Content here -->
 		<?php
-			if (!isset($_GET['sketch'])) // a sketch was not selected in the parameter
-				// print the error message "No sketch selected!" (with styling)
-				echo "<div class='error container'><h1 class='error title'>ERROR: No sketch selected!</h1><p class='error content'>Return to the main page and select a sketch. If you encounter a broken link, please contact me at <a href='mailto:yon.ploj@gmail.com'>yon.ploj@gmail.com</a></p></div>";
-			else
+			if (!isset($_GET['sketch'])) {// a sketch was not selected in the parameter
+				// display the sketch selection page
+				echo 'Welcome to the sketch selection page!';
+			}
+			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch'])) { // match string with only alphanumeric characters and underscores
+				// print the error message for XSS attempt (with styling)
+				echo "<div class='error container'><h1 class='error title'>ERROR: Invalid sketch name!</h1><p class='error content'>Sketch names can only contain letters, digits or underscores. Please utilize the sketch selection screen to proceed and do not attempt to 'hack' your way in.<br><br>If you encountered a bug or believe this is a mistake, do not hesitate to contact me <a href='mailto:yon.ploj@gmail.com'>yon.ploj@gmail.com</a></p></div>";
+			}
+			else {
 				// an OK sketch was selected, display it
+				// TODO: check if sketch exists
 				include('sketches/'.$_GET['sketch']);
-				// TODO: check if sketch exists, and prevent ".." in the sketch name (to prevent XSS)
+				echo 'Sketch "'.$_GET['sketch'].'" goes here';
+			}
 		?>
 	</body>
 </html>
