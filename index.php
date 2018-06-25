@@ -11,7 +11,7 @@
 		?>
 		<meta charset="UTF-8">
 	    <title>Jatan's Processing page</title>
-		<script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+		<script src="libraries/p5.js"></script>
 	    <style>
 			body {
 				font-family: sans-serif;
