@@ -54,16 +54,20 @@
 				<style>
 					body {
 						margin: 0;
-						padding-top: 2em;
+						padding: 0;
 						text-align: center;
 					}
 					#title {
 						border-bottom: 2px dashed black;
 						padding: 1em 0;
 						margin-bottom: 2em;
+						width: 40%;
+					}
+					#title:after {
+						content: ".js";
 					}
 					canvas {
-						border: 10px outset black;
+						border: 10px ridge black;
 					}
 				</style>';
 			}
