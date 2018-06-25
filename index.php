@@ -43,13 +43,12 @@
 			}
 			// no such sketch found (404)
 			elseif (!remote_exists($sketches.$_GET['sketch'].'.js')) {
-				echo 'SCRIPT ADDED!<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
 				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
 			// all OK
 			else {
 				// print the <script> include tag to load the sketch javascript
-				echo 'SCRIPT ADDED!<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
+				echo '<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
 			}
 
 
