@@ -42,7 +42,7 @@
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
 			}
 			// no such sketch found (404)
-			elseif (!file_exists($sketches.$_GET['sketch'].'.js')) {
+			elseif (!remote_exists($sketches.$_GET['sketch'].'.js')) {
 				echo 'SCRIPT ADDED!<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
 				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
@@ -70,6 +70,12 @@
 						<a href='mailto:yon.ploj@gmail.com'>yon.ploj@gmail.com</a></b>
 					</p>
 				</div>";
+			}
+
+			// checks if a file exists on a remote directory
+			function remote_exists($url){
+				$headers=get_headers($url);
+				return stripos($headers[0],"200 OK")?true:false;
 			}
 		?>
 	</body>
