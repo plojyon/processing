@@ -48,7 +48,24 @@
 			// all OK
 			else {
 				// print the <script> include tag to load the sketch javascript
+				echo '<h1 id="title">'.$_GET['sketch'].'</h1>';
 				echo '<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
+				echo '
+				<style>
+					body {
+						margin: 0;
+						padding-top: 2em;
+						text-align: center;
+					}
+					#title {
+						border-bottom: 2px dashed black;
+						padding: 1em 0;
+						margin-bottom: 2em;
+					}
+					canvas {
+						border: 10px outset black;
+					}
+				</style>';
 			}
 
 
