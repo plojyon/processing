@@ -13,9 +13,70 @@
 	    <title>Jatan's Processing page</title>
 		<script src="https://github.com/processing/p5.js/releases/download/0.5.7/p5.js"></script>
 	    <style>
+			/****************/
+			/* GLOBAL RULES */
+			/****************/
 			body {
 				font-family: sans-serif;
 			}
+
+
+			/********************************/
+			/* SKETCH SELECTION PAGE (main) */
+			/********************************/
+			#sketches .container {
+				border: 1px solid black;
+				box-shadow: 0 0 5px black;
+				display: inline-block;
+				width: 20em;
+				height: 20em;
+				cursor: pointer;
+				margin: 1em;
+			}
+			#sketches .thumbnail {
+				height: 18em;
+			}
+			#sketches .description {
+				font-weight: bold;
+				text-align: center;
+				padding-top: 0.5em;
+				border-top: 1px dashed black;
+			}
+			h1#select-title {
+				border-bottom: 2px dashed black;
+				padding: 1em 0;
+				margin: 0 auto 2em auto;
+				width: 40%;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			div#sketches {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+
+			/***********************/
+			/* SKETCH DISPLAY PAGE */
+			/***********************/
+			#sketch-title {
+				border-bottom: 2px dashed black;
+				padding: 1em 0;
+				margin: 0 auto 2em auto;
+				width: 40%;
+			}
+			#sketch-title:after {
+				content: ".js";
+			}
+			canvas {
+				border: 10px ridge black;
+			}
+
+
+			/**************/
+			/* ERROR PAGE */
+			/**************/
 			.error {
 				color: red;
 			}
@@ -29,12 +90,28 @@
 	<body>
 		<?php
 			$site = "https://plojyon.github.io/processing/";
-			$sketches = $site."sketches/";
+			$sketches_dir = $site."sketches/";
+			$sketches = array("flowfield", "wavy_blocks");
+			$sketch_count = count($sketches);
 
 			// a sketch was NOT selected in the parameter
 			if (!isset($_GET['sketch'])) {
 				// display the sketch selection page
-				echo 'Welcome to the sketch selection page!'; // TODO: make an actual page
+				echo '
+				<style>
+					body { padding: 2em 3em; }
+				</style>';
+
+				echo "
+				<section>
+					<h1 id='select-title'>Select a sketch</h1>
+					<div id='sketches'>";
+				for ($i = 0; $i < $sketch_count; $i++) {
+					add_sketch($sketches[$i]);
+				}
+				echo "
+					</div>
+				</section>";
 			}
 			// sketch name validation - match string with only alphanumeric characters and underscores
 			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch'])) {
@@ -42,36 +119,28 @@
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
 			}
 			// no such sketch found (404)
-			elseif (!remote_exists($sketches.$_GET['sketch'].'.js')) {
+			elseif (!remote_exists($sketches_dir.$_GET['sketch'].'.js')) {
 				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
 			// all OK
 			else {
 				// print the <script> include tag to load the sketch javascript
-				echo '<h1 id="title">'.$_GET['sketch'].'</h1>';
-				echo '<script src="'.$sketches.$_GET['sketch'].'.js"></script>';
+				echo '<h1 id="sketch-title">'.$_GET['sketch'].'</h1>';
+				echo '<script src="'.$sketches_dir.$_GET['sketch'].'.js"></script>';
 				echo '
 				<style>
-					body {
-						margin: 0;
-						padding: 0;
-						text-align: center;
-					}
-					#title {
-						border-bottom: 2px dashed black;
-						padding: 1em 0;
-						margin: 0 auto 2em auto;
-						width: 40%;
-					}
-					#title:after {
-						content: ".js";
-					}
-					canvas {
-						border: 10px ridge black;
-					}
+					body { margin: 0; text-align: center; }
 				</style>';
 			}
 
+
+			function add_sketch($sketch) {
+				echo '
+				<div class="container" onclick="window.location.href = \'?sketch='.$sketch.'\';">
+					<div class="thumbnail" style="background-image: url(\'thumbnails/'.$sketch.'.png\');"></div>
+					<div class="description">'.$sketch.'</div>
+				</div>';
+			}
 
 
 			// prints a pretty error report
@@ -92,10 +161,10 @@
 				</div>";
 			}
 
-			// checks if a file exists on a remote directory
-			function remote_exists($url){
-				$headers=get_headers($url);
-				return stripos($headers[0],"200 OK")?true:false;
+			// checks if a file exists, but works on remote directories too (http://)
+			function remote_exists($url) {
+				$headers = get_headers($url);
+				return stripos($headers[0], "200 OK") ? true:false; // return actual boolean
 			}
 		?>
 	</body>
