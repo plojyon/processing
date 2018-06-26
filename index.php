@@ -91,6 +91,7 @@
 		<?php
 			$site = "https://plojyon.github.io/processing/";
 			$sketches_dir = $site."sketches/";
+			$thumbnail_dir = $site."thumbnails/";
 			$sketches = array("flowfield", "wavy_blocks");
 			$sketch_count = count($sketches);
 
@@ -137,7 +138,7 @@
 			function add_sketch($sketch) {
 				echo '
 				<div class="container" onclick="window.location.href = \'?sketch='.$sketch.'\';">
-					<div class="thumbnail" style="background-image: url(\'thumbnails/'.$sketch.'.png\');"></div>
+					<div class="thumbnail" style="background-image: url(\''.$thumbnail_dir.$sketch.'.png\');"></div>
 					<div class="description">'.$sketch.'</div>
 				</div>';
 			}
