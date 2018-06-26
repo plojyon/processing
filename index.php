@@ -35,6 +35,8 @@
 			}
 			#sketches .thumbnail {
 				height: 18em;
+				background-repeat: no-repeat;
+				background-size: cover;
 			}
 			#sketches .description {
 				font-weight: bold;
