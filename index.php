@@ -108,7 +108,7 @@
 					<h1 id='select-title'>Select a sketch</h1>
 					<div id='sketches'>";
 				for ($i = 0; $i < $sketch_count; $i++) {
-					add_sketch($sketches[$i]);
+					add_sketch($sketches[$i], $thumbnail_dir);
 				}
 				echo "
 					</div>
@@ -135,7 +135,7 @@
 			}
 
 
-			function add_sketch($sketch) {
+			function add_sketch($sketch, $thumbnail_dir) {
 				echo '
 				<div class="container" onclick="window.location.href = \'?sketch='.$sketch.'\';">
 					<div class="thumbnail" style="background-image: url(\''.$thumbnail_dir.$sketch.'.png\');"></div>
