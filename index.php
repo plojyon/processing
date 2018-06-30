@@ -18,6 +18,7 @@
 			/****************/
 			body {
 				font-family: sans-serif;
+				padding-bottom: 5em; /* big sketches should have space at the bottom */
 			}
 
 
