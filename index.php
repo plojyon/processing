@@ -12,6 +12,7 @@
 		<meta charset="UTF-8">
 	    <title>Jatan's Processing page</title>
 		<script src="https://github.com/processing/p5.js/releases/download/0.5.7/p5.js"></script>
+		<script src="https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js"></script>
 	    <style>
 			/****************/
 			/* GLOBAL RULES */
