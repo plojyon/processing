@@ -121,12 +121,8 @@
 				report("Invalid sketch name", "Sketch names can only contain letters, digits or underscores.");
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
 			}
-			// no such sketch found (404)
-			elseif (!remote_exists($sketches_dir.$_GET['sketch'].'.js')) {
-				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
-			}
-			// all OK
-			else {
+			// all OK (found .js)
+			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.js')) {
 				// print the <script> include tag to load the sketch javascript
 				echo '<h1 id="sketch-title">'.$_GET['sketch'].'</h1>';
 				echo '<script src="'.$sketches_dir.$_GET['sketch'].'.js"></script>';
@@ -134,6 +130,20 @@
 				<style>
 					body { margin: 0; text-align: center; }
 				</style>';
+			}
+			// all OK (found .pde)
+			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.pde')) {
+				// print the <canvas> element for the .pde file
+				echo '<h1 id="sketch-title">'.$_GET['sketch'].'</h1>';
+				echo '<canvas data-processing-sources="'.$sketches_dir.$_GET['sketch'].'.pde"></canvas>';
+				echo '
+				<style>
+					body { margin: 0; text-align: center; }
+				</style>';
+			}
+			// no such sketch found (404)
+			else {
+				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 			}
 
 
