@@ -70,9 +70,6 @@
 				margin: 0 auto 2em auto;
 				width: 40%;
 			}
-			#sketch-title:after {
-				content: ".js";
-			}
 			canvas {
 				border: 10px ridge black;
 			}
@@ -131,6 +128,7 @@
 				echo '
 				<style>
 					body { margin: 0; text-align: center; }
+					#sketch-title:after { content: ".js"; }
 				</style>';
 			}
 			// all OK (found .pde)
@@ -141,6 +139,7 @@
 				echo '
 				<style>
 					body { margin: 0; text-align: center; }
+					#sketch-title:after { content: ".pde"; }
 				</style>';
 			}
 			// no such sketch found (404)
