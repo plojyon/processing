@@ -161,6 +161,7 @@
 				if (file_exists('sketches/'.$name))
 					deleteDir('sketches/'.$name);
 				mkdir('sketches/'.$name);
+				echo 'Made directory!';
 
 				// 1. generate index.html
 				$index = '<h1 id="sketch-title">'.$name.$extension.'</h1>';
@@ -173,17 +174,19 @@
 					body { margin: 0; text-align: center; }
 				</style>';
 				file_put_contents('sketches/'.$name.'/index.html', $index);
+				echo 'stored index!';
 
 				// 2. fetch source file from Github
 				$source = file_get_contents($dir.'/'.$name.$extension);
 				file_put_contents('sketches/'.$name.'/'.$name.$extension, $source);
+				echo 'fetched source!';
 
 				// 3. TODO: check for additional media files
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
 				// 4. redirect user to the newly created index.html
-				header('Location: sketches/'.$name.'/index.html');
-				die();
+				//header('Location: sketches/'.$name.'/index.html');
+				//die();
 			}
 
 			// echoes a pretty-formated sketch div for the main page (with thumbnail)
