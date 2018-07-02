@@ -149,12 +149,14 @@
 
 				// 1. generate index.html
 				$index = '<h1 id="sketch-title">'.$name.$extension.'</h1>';
-				if ($extension === ".js")
+				if ($extension === ".js") {
 					$index .= '<script src="'.$name.'.js"></script>';
 					$index .= '<script src="https://github.com/processing/p5.js/releases/download/0.5.7/p5.js"></script>';
-				elseif ($extension === ".pde")
+				}
+				elseif ($extension === ".pde") {
 					$index .= '<canvas data-processing-sources="'.$name.'.pde"></canvas>';
 					$index .= '<script src="https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js"></script>';
+				}
 				$index .= '
 				<style>
 					body {
