@@ -37,6 +37,7 @@
 				height: 18em;
 				background-repeat: no-repeat;
 				background-size: cover;
+				background-position: center;
 			}
 			#sketches .description {
 				font-weight: bold;
@@ -56,20 +57,6 @@
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: center;
-			}
-
-
-			/***********************/
-			/* SKETCH DISPLAY PAGE */
-			/***********************/
-			#sketch-title {
-				border-bottom: 2px dashed black;
-				padding: 1em 0;
-				margin: 0 auto 2em auto;
-				width: 40%;
-			}
-			canvas {
-				border: 10px ridge black;
 			}
 
 
@@ -170,7 +157,19 @@
 					$index .= '<script src="https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js"></script>';
 				$index .= '
 				<style>
-					body { margin: 0; text-align: center; }
+					body {
+						margin: 0;
+						text-align: center;
+					}
+					#sketch-title {
+						border-bottom: 2px dashed black;
+						padding: 1em 0;
+						margin: 0 auto 2em auto;
+						width: 40%;
+					}
+					canvas {
+						border: 10px ridge black;
+					}
 				</style>';
 				file_put_contents('sketches/'.$name.'/index.html', $index);
 
