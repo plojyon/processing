@@ -20,7 +20,7 @@
 	<body>
 		<section>
 			<h1 id='select-title'>Select a sketch</h1>
-			<div id='sketches'>"
+			<div id='sketches'>
 		<?php
 			$site = "https://plojyon.github.io/processing/";
 			$sketches_dir = $site."sketches/";
@@ -61,11 +61,19 @@
 				$index = '<h1 id="sketch-title">'.$name.$extension.'</h1>';
 				if ($extension === ".js") {
 					$index .= '<script src="'.$name.'.js"></script>';
-					$index .= '<script src="https://github.com/processing/p5.js/releases/download/0.5.7/p5.js"></script>';
+					// download p5.js
+					$source = file_get_contents('https://github.com/processing/p5.js/releases/download/0.5.7/p5.js');
+					file_put_contents('sketches/'.$name.'/p5.js');
+					// link p5.js
+					$index .= '<script src="p5.js"></script>';
 				}
 				elseif ($extension === ".pde") {
 					$index .= '<canvas data-processing-sources="'.$name.'.pde"></canvas>';
-					$index .= '<script src="https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js"></script>';
+					// download processing.js
+					$source = file_get_contents('https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js');
+					file_put_contents('sketches/'.$name.'/processing.js');
+					// link processing.js
+					$index .= '<script src="processing.js"></script>';
 				}
 				$index .= '
 				<style>
@@ -95,8 +103,8 @@
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
 				// 4. redirect user to the newly created index.html
-				header('Location: sketches/'.$name.'/index.html');
-				die();
+				//header('Location: sketches/'.$name.'/index.html');
+				//die();
 			}
 
 			// echoes a pretty-formated sketch div for the main page (with thumbnail)
