@@ -19,8 +19,6 @@
 	</head>
 	<body>
 		<section>
-			<h1 id='select-title'>Select a sketch</h1>
-			<div id='sketches'>
 		<?php
 			$site = "https://plojyon.github.io/processing/";
 			$sketches_dir = $site."sketches/";
@@ -30,6 +28,8 @@
 
 			// a sketch was NOT selected in the parameter
 			if (!isset($_GET['sketch'])) {
+				echo "<h1 id='select-title'>Select a sketch</h1>
+						<div id='sketches'>";
 				// load sketches and thumbnails to select from
 				for ($i = 0; $i < $sketch_count; $i++) {
 					add_sketch($sketches[$i], $thumbnail_dir);
@@ -103,8 +103,8 @@
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
 				// 4. redirect user to the newly created index.html
-				//header('Location: sketches/'.$name.'/index.html');
-				//die();
+				header('Location: sketches/'.$name.'/index.html');
+				die();
 			}
 
 			// echoes a pretty-formated sketch div for the main page (with thumbnail)
