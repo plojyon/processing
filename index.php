@@ -12,18 +12,11 @@
 		<meta charset="UTF-8">
 	    <title>Jatan's Processing page</title>
 	    <style>
-			/****************/
-			/* GLOBAL RULES */
-			/****************/
 			body {
 				font-family: sans-serif;
 				padding-bottom: 5em; /* big sketches should have space at the bottom */
 			}
 
-
-			/********************************/
-			/* SKETCH SELECTION PAGE (main) */
-			/********************************/
 			#sketches .container {
 				border: 1px solid black;
 				box-shadow: 0 0 5px black;
@@ -59,10 +52,6 @@
 				justify-content: center;
 			}
 
-
-			/**************/
-			/* ERROR PAGE */
-			/**************/
 			.error {
 				color: red;
 			}
@@ -101,34 +90,9 @@
 				</section>";
 			}
 			// sketch name validation - match string with only alphanumeric characters and underscores
-			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch'])) {
+			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch']))
 				report("Invalid sketch name", "Sketch names can only contain letters, digits or underscores.");
 				// this is used to prevent XSS (via the use of "../../fishy_stuff.exe")
-			}
-			/*
-			// all OK (found .js)
-			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.js')) {
-				// print the <script> include tag to load the sketch javascript
-				echo '<h1 id="sketch-title">'.$_GET['sketch'].'</h1>';
-				echo '<script src="'.$sketches_dir.$_GET['sketch'].'.js"></script>';
-				echo '
-				<style>
-					body { margin: 0; text-align: center; }
-					#sketch-title:after { content: ".js"; }
-				</style>';
-			}
-			// all OK (found .pde)
-			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.pde')) {
-				// print the <canvas> element for the .pde file
-				echo '<h1 id="sketch-title">'.$_GET['sketch'].'</h1>';
-				echo '<canvas data-processing-sources="'.$sketches_dir.$_GET['sketch'].'.pde"></canvas>';
-				echo '
-				<style>
-					body { margin: 0; text-align: center; }
-					#sketch-title:after { content: ".pde"; }
-				</style>';
-			}
-			*/
 			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.js'))
 				load_sketch($sketches_dir, $_GET['sketch'], '.js');
 
