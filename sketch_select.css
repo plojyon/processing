@@ -1,0 +1,40 @@
+body {
+	font-family: sans-serif;
+	padding: 2em 3em;
+}
+
+
+#sketches .container {
+	border: 1px solid black;
+	box-shadow: 0 0 5px black;
+	display: inline-block;
+	width: 20em;
+	height: 20em;
+	cursor: pointer;
+	margin: 1em;
+}
+#sketches .thumbnail {
+	height: 18em;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+#sketches .description {
+	font-weight: bold;
+	text-align: center;
+	padding-top: 0.5em;
+	border-top: 1px dashed black;
+}
+h1#select-title {
+	border-bottom: 2px dashed black;
+	padding: 1em 0;
+	margin: 0 auto 2em auto;
+	width: 40%;
+	text-align: center;
+	text-transform: uppercase;
+}
+div#sketches {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}

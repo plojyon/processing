@@ -11,58 +11,16 @@
 		?>
 		<meta charset="UTF-8">
 	    <title>Jatan's Processing page</title>
-	    <style>
-			body {
-				font-family: sans-serif;
-				padding-bottom: 5em; /* big sketches should have space at the bottom */
-			}
-
-			#sketches .container {
-				border: 1px solid black;
-				box-shadow: 0 0 5px black;
-				display: inline-block;
-				width: 20em;
-				height: 20em;
-				cursor: pointer;
-				margin: 1em;
-			}
-			#sketches .thumbnail {
-				height: 18em;
-				background-repeat: no-repeat;
-				background-size: cover;
-				background-position: center;
-			}
-			#sketches .description {
-				font-weight: bold;
-				text-align: center;
-				padding-top: 0.5em;
-				border-top: 1px dashed black;
-			}
-			h1#select-title {
-				border-bottom: 2px dashed black;
-				padding: 1em 0;
-				margin: 0 auto 2em auto;
-				width: 40%;
-				text-align: center;
-				text-transform: uppercase;
-			}
-			div#sketches {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-			}
-
-			.error {
-				color: red;
-			}
-			.error.container {
-				background-color: pink;
-				border: 1px solid red;
-				padding: 1em;
-			}
-		</style>
+		<?php
+			// only import styles if you're gonna want to view this page
+			if (!isset($_GET['sketch']))
+				echo '<link rel="stylesheet" href="https://plojyon.github.io/processing/sketch_select.css">';
+		?>
 	</head>
 	<body>
+		<section>
+			<h1 id='select-title'>Select a sketch</h1>
+			<div id='sketches'>"
 		<?php
 			$site = "https://plojyon.github.io/processing/";
 			$sketches_dir = $site."sketches/";
@@ -72,22 +30,10 @@
 
 			// a sketch was NOT selected in the parameter
 			if (!isset($_GET['sketch'])) {
-				// display the sketch selection page
-				echo '
-				<style>
-					body { padding: 2em 3em; }
-				</style>';
-
-				echo "
-				<section>
-					<h1 id='select-title'>Select a sketch</h1>
-					<div id='sketches'>";
+				// load sketches and thumbnails to select from
 				for ($i = 0; $i < $sketch_count; $i++) {
 					add_sketch($sketches[$i], $thumbnail_dir);
 				}
-				echo "
-					</div>
-				</section>";
 			}
 			// sketch name validation - match string with only alphanumeric characters and underscores
 			elseif (!preg_match('/^[a-z0-9_]+$/i', $_GET['sketch']))
@@ -125,7 +71,9 @@
 				<style>
 					body {
 						margin: 0;
+						font-family: sans-serif;
 						text-align: center;
+						padding-bottom: 5em; /* big sketches should have space at the bottom */
 					}
 					#sketch-title {
 						border-bottom: 2px dashed black;
@@ -175,7 +123,17 @@
 						do not hesitate to contact me at
 						<a href='mailto:yon.ploj@gmail.com'>yon.ploj@gmail.com</a></b>
 					</p>
-				</div>";
+				</div>
+				<style>
+					.error {
+						color: red;
+					}
+					.error.container {
+						background-color: pink;
+						border: 1px solid red;
+						padding: 1em;
+					}
+				</style>";
 			}
 
 			// checks if a file exists, but works on remote directories too (http://)
@@ -198,5 +156,7 @@
 				rmdir($dirPath);
 			}
 		?>
+			</div>
+		</section>
 	</body>
 </html>
