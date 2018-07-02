@@ -63,7 +63,7 @@
 					$index .= '<script src="'.$name.'.js"></script>';
 					// download p5.js
 					$source = file_get_contents('https://github.com/processing/p5.js/releases/download/0.5.7/p5.js');
-					file_put_contents('sketches/'.$name.'/p5.js');
+					file_put_contents('sketches/'.$name.'/p5.js', $source);
 					// link p5.js
 					$index .= '<script src="p5.js"></script>';
 				}
@@ -71,7 +71,7 @@
 					$index .= '<canvas data-processing-sources="'.$name.'.pde"></canvas>';
 					// download processing.js
 					$source = file_get_contents('https://raw.github.com/processing-js/processing-js/v1.4.8/processing.js');
-					file_put_contents('sketches/'.$name.'/processing.js');
+					file_put_contents('sketches/'.$name.'/processing.js', $source);
 					// link processing.js
 					$index .= '<script src="processing.js"></script>';
 				}
