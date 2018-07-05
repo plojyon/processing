@@ -1,3 +1,7 @@
+console.log("A WebGL test");
+console.log("Generates 400 blocks and varies their height");
+console.log("Height is a sine function of the product of the x and y coordinate and the frame number");
+
 function setup() {
 	createCanvas(1000, 1000, WEBGL);
 	w = 20;

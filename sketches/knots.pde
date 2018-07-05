@@ -30,6 +30,9 @@ int verticesCount = 0;
 boolean redrawing = false;
 
 void setup() {
+	print("A polynomial knot animation");
+	print("Wikipedia page: https://en.wikipedia.org/wiki/Knot_theory")
+	print("Paul Borke's page (where the formulas are from): http://paulbourke.net/geometry/knots/");
     size(600, 400, P3D);
     makeShape();
     verticesCount = vectors.size()/2;
@@ -41,35 +44,35 @@ void draw() {
     pushMatrix();
     //rotateX((height/2-mouseY)*0.01);
     //rotateY((mouseX-width/2)*0.01);
-    
+
     //rotateX(millis()/1000.0);
     //rotateY(millis()/1010.0);
-    
+
     rotateX(rotation.x);
     rotateY(rotation.y);
-    
+
     //lights();
     directionalLight(255, 255, 255, 0, 0.1, -0.4); // TOP
     ambientLight(20, 20, 20);
-    
+
     popMatrix();
     translate(width/2, height/2, rotation.z); // translate for camera
     rotateX(rotation.x);
     rotateY(rotation.y);
-    
+
     stroke(255);
     noFill();//fill(100, 127, 0);
     box(1000);
-    
+
     if (dynamic) {
     	float x = ((float)millis()/100.0); // x is the number of 0.1s that passed
     	x %= 200; // x is between 0 and 200
     	len = f(x/100);
     }
-    
+
     //noFill();
     strokeWeight(8);
-    
+
     /*
     //beginShape();
     int endIndex = (startIndex+(int)(len*verticesCount));
@@ -79,14 +82,14 @@ void draw() {
         fill(255);
         noStroke();//stroke(255);//stroke((noise((i%verticesCount)*0.03)*255) % 255);
         //vertex(v.x, v.y, v.z);
-        
+
         line3d(v1.x, v1.y, v1.z, v2.x, v2.y, v2.z);
     }
     //endShape();
     */
     fill(255);
     noStroke();//stroke(255);//stroke((noise((i%verticesCount)*0.03)*255) % 255);
-    
+
     if (!redrawing) {
         beginShape();
         int endIndex = (startIndex+(int)(len*verticesCount));
@@ -98,7 +101,7 @@ void draw() {
             popMatrix();
         }
         endShape();
-        
+
         startIndex += speed;
         startIndex %= verticesCount;
     }
@@ -156,17 +159,17 @@ void makeShape() {
         float r = getR(type);
         float theta = getTheta(type);
         float phi = getPhi(type);
-        
+
         r *= 100;
-          
+
         float x = r * cos(phi) * cos(theta);
         float y = r * cos(phi) * sin(theta);
         float z = r * sin(phi);
-        
+
         vectors.add(new PVector(x,y,z));
-        
+
         beta += 0.001;
-        
+
         if (beta > TWO_PI) return;
     }
 }

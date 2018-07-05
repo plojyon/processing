@@ -1,3 +1,7 @@
+console.log("A barnsley fern generator");
+console.log("See https://en.wikipedia.org/wiki/Barnsley_fern");
+console.log("Point size and hue are products of the x and y coordinates (+ frame number for hue)");
+
 var x = 0;
 var y = 0;
 var frame = 0;

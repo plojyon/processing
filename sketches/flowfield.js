@@ -1,3 +1,7 @@
+console.log("A simple perlin noise flowfield with translucent trail-leaving particles on retained background");
+console.log("The result is an accumulating path on the more crowded parts of the canvas, and highlighted common paths");
+console.log("Don't keep the animation running for too long because it gets uglier with time");
+
 function setup() {
 	speed = 0.01;/**/
 	scl = 5; /*smaller number means smaller squares (more diverse)*/
