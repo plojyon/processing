@@ -58,7 +58,8 @@
 				mkdir('sketches/'.$name);
 
 				// 1. generate index.html
-				$index = '<h1 id="sketch-title">'.$name.$extension.'</h1>';
+				$index = '<head><meta charset="UTF-8"></head>';
+				$index .= '<h1 id="sketch-title">'.$name.$extension.'</h1>';
 				if ($extension === ".js") {
 					$index .= '<script src="'.$name.'.js"></script>';
 					// download p5.js
