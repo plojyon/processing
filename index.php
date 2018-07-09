@@ -23,7 +23,7 @@
 			$site = "https://plojyon.github.io/processing/";
 			$sketches_dir = $site."sketches/";
 			$thumbnail_dir = $site."thumbnails/";
-			$sketches = array("flowfield", "wavy_blocks", "barnsley_fern", "knots", "shtikmen");
+			$sketches = array("flowfield", "wavy_blocks", "barnsley_fern", "knots", "shtikmen", "snow");
 			$sketch_count = count($sketches);
 
 			// a sketch was NOT selected in the parameter
