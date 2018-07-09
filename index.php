@@ -45,6 +45,9 @@
 			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.pde'))
 				load_sketch($sketches_dir, $_GET['sketch'], '.pde');
 
+			elseif (remote_exists($sketches_dir.$_GET['sketch'].'.zip'))
+				load_sketch($sketches_dir, $_GET['sketch'], '.zip');
+
 			else // no such sketch found (404)
 				report("Sketch does not exist", "The selected sketch (".$_GET['sketch'].") was not found.");
 
@@ -76,6 +79,9 @@
 					// link processing.js
 					$index .= '<script src="processing.js"></script>';
 				}
+				elseif ($extension === ".zip") {
+					$index .= 'This sketch cannot be played online. <a href="'.$name.'.zip">Download</a>';
+				}
 				$index .= '
 				<style>
 					body {
@@ -104,6 +110,11 @@
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
 				// 4. redirect user to the newly created index.html
+				finish();
+			}
+
+			// redirects the user and dies
+			function finish() {
 				header('Location: sketches/'.$name.'/index.html');
 				die();
 			}
