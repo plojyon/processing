@@ -110,7 +110,7 @@
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
 				// 4. redirect user to the newly created ../$name/index.html
-				header('Location: sketches/'.$location.'/index.html');
+				header('Location: sketches/'.$name.'/index.html');
 				die();
 			}
 
