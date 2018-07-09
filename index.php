@@ -109,13 +109,8 @@
 				// 3. TODO: check for additional media files
 				//   3.1 TODO: download additional files, possibly overwriting existing data
 
-				// 4. redirect user to the newly created index.html
-				finish();
-			}
-
-			// redirects the user and dies
-			function finish() {
-				header('Location: sketches/'.$name.'/index.html');
+				// 4. redirect user to the newly created ../$name/index.html
+				header('Location: sketches/'.$location.'/index.html');
 				die();
 			}
 
